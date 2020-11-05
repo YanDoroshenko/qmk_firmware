@@ -65,7 +65,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LOCKING_RESYNC_ENABLE
 
 /* ws2812 RGB LED */
-#define RGBLIGHT_LAYER
+#define RGBLIGHT_LAYERS
 #define RGBLIGHT_LAYERS_OVERRIDE_RGB_OFF
 #define RGB_DI_PIN D3
 #define RGBLIGHT_ANIMATIONS
@@ -89,3 +89,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //5: about 20kbps
 
 #define BACKLIGHT_CAPS_LOCK
+#define MASTER_RIGHT
