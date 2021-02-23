@@ -64,6 +64,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Locking resynchronize hack */
 #define LOCKING_RESYNC_ENABLE
 
+#define BACKLIGHT_CAPS_LOCK
+
 /* ws2812 RGB LED */
 #define RGBLIGHT_LAYERS
 #define RGBLIGHT_LAYERS_OVERRIDE_RGB_OFF
@@ -75,7 +77,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // The LEDs on the slave half go in reverse order
 #define RGBLIGHT_LED_MAP { 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, \
-                          23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12}
+                           23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12}
+
 
 #define SOFT_SERIAL_PIN D0
 #define SELECT_SOFT_SERIAL_SPEED 1
@@ -88,5 +91,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //4: about 26kbps
 //5: about 20kbps
 
-#define BACKLIGHT_CAPS_LOCK
+// Sped up macro playback
+#define USB_POLLING_INTERVAL_MS 5
+
 #define MASTER_RIGHT

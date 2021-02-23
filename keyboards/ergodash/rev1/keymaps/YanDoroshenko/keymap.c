@@ -9,6 +9,7 @@
 enum layer_names {
     _QWERTY = 0,
     _WORMS,
+    _REVERSE,
     _FN,
     _NAVIGATION,
 };
@@ -17,41 +18,55 @@ enum layer_names {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_3key_2us(
-            KC_GESC, KC_1,    KC_2,    KC_3,    KC_4,        KC_5,   KC_MINS,                     KC_EQL,  KC_6,   KC_7,            KC_8,   KC_9,    KC_0,    KC_PSCR,
-            KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,        KC_T,   KC_LBRC,                     KC_RBRC, KC_Y,   KC_U,            KC_I,   KC_O,    KC_P,    KC_BSLS,
-            KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,        KC_G,   KC_PGDN,                     KC_PGUP, KC_H,   KC_J,            KC_K,   KC_L,    KC_SCLN, KC_QUOT,
-            KC_LSPO, KC_Z,    KC_X,    KC_C,    KC_V,        KC_B,                                KC_N,    KC_M,   KC_COMM,         KC_DOT, KC_SLSH, KC_RSPC,
-            KC_LCTL, KC_LGUI, KC_LALT, KC_HOME, OSL(_FN),    KC_SPC, KC_DEL,                      KC_BSPC, KC_ENT, TG(_NAVIGATION), KC_END, KC_RALT, KC_LGUI, KC_RCTL
+            KC_GESC, KC_1,    KC_2,    KC_3,    KC_4,        KC_5,   KC_MINS,                     KC_EQL,       KC_6,   KC_7,            KC_8,   KC_9,    KC_0,    DM_REC1,
+            KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,        KC_T,   KC_LBRC,                     KC_RBRC,      KC_Y,   KC_U,            KC_I,   KC_O,    KC_P,    KC_BSLS,
+            KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,        KC_G,   TG(_REVERSE),                TG(_REVERSE), KC_H,   KC_J,            KC_K,   KC_L,    KC_SCLN, KC_QUOT,
+            KC_LSPO, KC_Z,    KC_X,    KC_C,    KC_V,        KC_B,                                KC_N,         KC_M,   KC_COMM,         KC_DOT, KC_SLSH, KC_RSPC,
+            KC_LCTL, KC_LGUI, KC_LALT, KC_HOME, OSL(_FN),    KC_SPC, KC_DEL,                      KC_BSPC,      KC_ENT, TG(_NAVIGATION), KC_END, DM_PLY1, KC_LGUI, KC_RCTL
     ),
 
     [_WORMS] = LAYOUT_3key_2us(
-            KC_NO ,   KC_NO ,  KC_NO ,  KC_NO ,   KC_NO ,      KC_NO , KC_NO ,                          KC_NO , KC_NO ,  KC_NO ,          KC_NO ,  KC_NO ,   KC_NO , KC_NO ,
-            KC_NO ,   KC_NO ,  KC_UP,   KC_NO ,   KC_NO ,      KC_NO , KC_NO ,                          KC_NO , KC_NO ,  KC_NO ,          KC_UP,   KC_NO ,   KC_NO , KC_NO ,
-            KC_NO ,   KC_LEFT, KC_DOWN, KC_RIGHT, KC_NO ,      KC_NO , KC_NO ,                          KC_NO , KC_NO ,  KC_LEFT,         KC_DOWN, KC_RIGHT, KC_NO , KC_NO ,
-            KC_LSFT,  KC_NO ,  KC_NO ,  KC_NO ,   KC_NO ,      KC_NO,                                   KC_NO , KC_NO ,  KC_NO ,          KC_NO ,  KC_NO ,   KC_LSFT,
-            KC_NO ,   KC_NO ,  KC_NO ,  KC_NO ,   TO(_QWERTY), KC_SPC, KC_ENT,                          KC_ENT, KC_SPC,  KC_NO ,          KC_NO ,  KC_NO ,  KC_NO ,   KC_NO
+            KC_ESC,   KC_1,    KC_2,    KC_3,     KC_4,        KC_5,   KC_6,                      KC_1,   KC_2,    KC_3,            KC_4,    KC_5,     KC_6,     KC_ESC,
+            KC_TAB,   KC_NO,   KC_W,    KC_NO,    KC_NO,       KC_NO,  KC_NO,                     KC_NO,  KC_NO,   KC_NO,           KC_W,    KC_NO,    KC_NO,    KC_TAB,
+            KC_NO,    KC_A,    KC_S,    KC_D,     KC_NO,       KC_NO,  KC_NO,                     KC_NO,  KC_NO,   KC_A,            KC_S,    KC_D,     KC_NO,    KC_NO,
+            KC_LSFT,  KC_NO,   KC_NO,   KC_NO,    KC_NO,       KC_NO,                             KC_NO,  KC_NO,   KC_NO,           KC_NO,   KC_NO,    KC_LSFT,
+            KC_NO,    KC_NO,   KC_NO,   KC_NO,    TO(_QWERTY), KC_SPC, KC_ENT,                    KC_ENT, KC_SPC,  KC_NO,           KC_NO,   KC_NO,    KC_NO,    KC_NO
+    ),
+
+    [_REVERSE] = LAYOUT_3key_2us(
+            KC_PSCR,   KC_0,     KC_9,    KC_8,            KC_7,            KC_6,   KC_EQL,                      KC_MINS,        KC_5,        KC_4,     KC_3,    KC_2,    KC_1,    KC_GESC,
+            KC_BSLS,   KC_P,     KC_O,    KC_I,            KC_U,            KC_Y,   KC_RBRC,                     KC_LBRC,        KC_T,        KC_R,     KC_E,    KC_W,    KC_Q,    KC_TAB,
+            KC_QUOT,   KC_SCLN,  KC_L,    KC_K,            KC_J,            KC_H,   TG(_REVERSE),                TG(_REVERSE),   KC_G,        KC_F,     KC_D,    KC_S,    KC_A,    KC_CAPS,
+            KC_RSPC,   KC_SLSH,  KC_DOT,  KC_COMM,         KC_M,            KC_N,                                KC_B,           KC_V,        KC_C,     KC_X,    KC_Z,    KC_LSPO,
+            KC_RCTL,   KC_LGUI,  KC_RALT, KC_END,          TG(_NAVIGATION), KC_ENT, KC_BSPC,                     KC_DEL,         KC_SPC,      OSL(_FN), KC_HOME, KC_LALT, KC_LGUI, KC_LCTL
     ),
 
     [_FN] = LAYOUT_3key_2us(
-            KC_GRV,       KC_F1,      KC_F2,      KC_F3,    KC_F4,       KC_F5,  KC_F6,            KC_F7,   KC_F8,   KC_F9,           KC_F10,  KC_F11,  KC_F12,  KC_BSPC,
-            TO(_WORMS),   KC_Q,       KC_MPLY,    KC_MPRV,  KC_MNXT,     KC_T,   RGB_VAI,          KC_LALT, KC_Y,    KC_U,            KC_I,    KC_O,    KC_P,    KC_EQL,
-            KC_CAPS,      KC_A,       KC_VOLD,    KC_VOLU,  KC_MUTE,     KC_G,   RGB_VAD,          KC_BSPC, KC_H,    KC_J,            KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-            KC_LSFT,      LALT(KC_Z), LALT(KC_X), TO(_FN),    KC_V,        KC_B,                     KC_N,    KC_M,    KC_COMM, KC_DOT,          KC_SLSH, KC_RSFT,
-            KC_LCTL,      KC_LGUI,    KC_LALT,    KC_END,   TO(_QWERTY), KC_ENT, KC_DEL,           KC_BSPC, KC_BSPC, TG(_NAVIGATION), KC_END,  KC_RALT, KC_LGUI, KC_RCTL
+            KC_GRV,           KC_F1,            KC_F2,           KC_F3,         KC_F4,       KC_F5,   KC_F6,            KC_F7,   KC_F8,         KC_F9,            KC_F10,   KC_F11,     KC_F12,   KC_PSCR,
+            TO(_WORMS),       ______,           KC_MPLY,         KC_MPRV,       KC_MNXT,     ______,  RGB_VAI,          RGB_TOG, ______,        ______,           ______,   ______,     ______,   ______,
+            ______,           ______,           KC_VOLD,         KC_VOLU,       KC_MUTE,     ______,  RGB_VAD,          ______,  ______,        ______,           ______,   LGUI(KC_L), ______,   ______,
+            ______,           LALT(KC_Z),       LALT(KC_X),      LCTL(KC_C),    LCTL(KC_V),  ______,                    ______,  ______,        ______,           ______,   ______,     ______,
+            ______,           ______,  ______,  DM_RSTP,         TO(_QWERTY),   ______,      ______,                        ______,  ______,        TG(_NAVIGATION),  ______,   ______,     ______,   ______
     ),
 
     [_NAVIGATION] = LAYOUT_3key_2us(
-            ______, ______, ______, ______, ______,      ______, ______,                          ______, ______,  ______,          ______, ______,   ______, ______,
-            ______, ______, ______, ______, ______,      ______, ______,                          ______, ______,  ______,          ______, ______,   ______, ______,
-            ______, ______, ______, ______, ______,      ______, ______,                          ______, KC_LEFT, KC_DOWN,         KC_UP,  KC_RIGHT, ______, ______,
-            ______, ______, ______, ______, ______,      ______,                                  ______, ______,  ______,          ______, ______,   ______,
-            ______, ______, ______, ______, TO(_QWERTY), ______, ______,                          ______, ______,  TG(_NAVIGATION), ______, ______,   ______, ______
+            ______,       ______, ______,  ______, ______,          ______,      ______,                          ______, ______,       ______,          ______,  ______,   ______, ______,
+            ______,       ______, ______,  ______, ______,          ______,      ______,                          ______, ______,       KC_PGDN,         KC_PGUP, ______,   ______, ______,
+            ______,       ______, KC_LEFT, KC_UP,  KC_UP,           KC_RIGHT,    ______,                          ______, KC_LEFT,      KC_DOWN,         KC_UP,   KC_RIGHT, ______, ______,
+            ______,       ______, ______,  ______, ______,          ______,                                       ______, ______,       ______,          ______,  ______,   ______,
+            ______,       ______, ______,  ______, TG(_NAVIGATION), TO(_QWERTY), ______,                          ______, ______,       TG(_NAVIGATION), ______,  ______,   ______, ______
     ),
 };
 
+#ifdef MASTER_RIGHT
+const rgblight_segment_t PROGMEM my_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+        {12, 12, HSV_WHITE}       // Light 12 LEDs, starting with LED 0
+        );
+#else
 const rgblight_segment_t PROGMEM my_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
         {0, 12, HSV_WHITE}       // Light 12 LEDs, starting with LED 0
         );
+#endif
 
 const rgblight_segment_t PROGMEM my_navigation_layer[] = RGBLIGHT_LAYER_SEGMENTS(
         {11, 2, HSV_CYAN}
@@ -59,6 +74,11 @@ const rgblight_segment_t PROGMEM my_navigation_layer[] = RGBLIGHT_LAYER_SEGMENTS
 
 const rgblight_segment_t PROGMEM my_fn_layer[] = RGBLIGHT_LAYER_SEGMENTS(
         {11, 2, HSV_GREEN}
+        );
+
+const rgblight_segment_t PROGMEM my_reverse_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+        {10, 1, HSV_RED},
+        {13, 1, HSV_RED}
         );
 
 const rgblight_segment_t PROGMEM my_worms_layer[] = RGBLIGHT_LAYER_SEGMENTS(
@@ -75,6 +95,7 @@ const rgblight_segment_t PROGMEM my_worms_layer[] = RGBLIGHT_LAYER_SEGMENTS(
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
         my_capslock_layer,
         my_worms_layer,  // Overrides caps lock layer
+        my_reverse_layer,  // Overrides caps lock layer
         my_fn_layer,    // Overrides other layers
         my_navigation_layer     // Overrides other layers
         );
@@ -89,8 +110,9 @@ void keyboard_post_init_user(void) {
 layer_state_t layer_state_set_user(layer_state_t state) {
     // Both layers will light up if both kb layers are active
     rgblight_set_layer_state(1, BIT_SET(state, _WORMS));
-    rgblight_set_layer_state(2, BIT_SET(state, _FN));
-    rgblight_set_layer_state(3, BIT_SET(state, _NAVIGATION));
+    rgblight_set_layer_state(2, BIT_SET(state, _REVERSE));
+    rgblight_set_layer_state(3, BIT_SET(state, _FN));
+    rgblight_set_layer_state(4, BIT_SET(state, _NAVIGATION));
     return state;
 }
 
